@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dishes</title>
+    <style>
+        .red-color{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h3>All dishes available:</h3>
+    <a th:href="@{/dishes/dish-form}"><button>Add new dish</button></a>
+    <h5 class="red-color" th:if="${error != null}" th:text="'Error: ' + ${error}"></h5>
+    <ul>
+        <li th:each="dish : ${dishes}">
+            <span th:text="${dish.getFormatedDish()}"></span>
+            <span>
+                <!-- ->
+                    form is needed so the buttons perform the action
+                <-- -->
+                <form th:action="@{/dishes/delete/{id}(id=${dish.getId()})}" th:method="post">
+                    <button th:formmethod="get" th:formaction="@{/dishes/dish-form/{id}(id=${dish.getId()})}">Edit</button>
+                    <button>Delete</button>
+                </form>
+
+            </span>
+        </li>
+    </ul>
+</body>
+</html>

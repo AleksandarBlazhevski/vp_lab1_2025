@@ -28,6 +28,10 @@ public class Chef {
         dishes.add(dish);
     }
 
+    public void removeDish(Long id) {
+        dishes.removeIf(item -> item.getId().equals(id));
+    }
+
     public String getFormatedName(){
         return firstName + " " + lastName + ", Bio: " + bio;
     }

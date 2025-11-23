@@ -6,6 +6,8 @@ import mk.ukim.finki.wp.lab.repository.DishRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 public class InMemoryDishRepository implements DishRepository {
     @Override
@@ -16,5 +18,23 @@ public class InMemoryDishRepository implements DishRepository {
     @Override
     public Dish findByDishId(String dishId) {
         return DataHolder.dishes.stream().filter(item -> item.getDishId().equals(dishId)).findFirst().orElse(new Dish());
+    }
+
+    @Override
+    public Optional<Dish> findById(Long id) {
+        return DataHolder.dishes.stream().filter(item -> item.getId() == id).findFirst();
+    }
+
+    @Override
+    public Dish save(Dish dish) {
+        DataHolder.dishes.removeIf(item -> item.getId() == dish.getId());
+        DataHolder.dishes.add(dish);
+        return dish;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        DataHolder.dishes.removeIf(item -> item.getId() == id);
+        DataHolder.chefs.forEach(chef -> chef.removeDish(id));
     }
 }
