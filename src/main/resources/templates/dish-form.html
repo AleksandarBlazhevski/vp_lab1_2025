@@ -39,6 +39,18 @@
         </div>
         <!--dishId is set in service and is string value of the id-->
         <input type="number" name="id" th:value="${dish?.getId()}" hidden="hidden">
+        <select name="chefId">
+            <option><----Select-Chef----></option>
+            <option th:each="chef : ${chefs}"
+                    th:if="${dish?.chef?.getId()} != ${chef.getId()}"
+                    th:text="${chef.getFormatedName()}"
+                    th:value="${chef.getId()}"></option>
+            <option th:if="${dish} != null"
+                    th:selected="${true}"
+                    th:value="${dish.chef.getId()}"
+                    th:text="${dish.chef.getFormatedName()}"
+            ></option>
+        </select>
 
 
         <button id="submit" type="submit" class="btn btn-primary">Submit</button>

@@ -3,8 +3,8 @@ package mk.ukim.finki.wp.lab.service.impl;
 import mk.ukim.finki.wp.lab.model.Chef;
 import mk.ukim.finki.wp.lab.model.Dish;
 import mk.ukim.finki.wp.lab.repository.ChefRepository;
-import mk.ukim.finki.wp.lab.repository.DishRepository;
 import mk.ukim.finki.wp.lab.service.ChefService;
+import mk.ukim.finki.wp.lab.service.DishService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +12,11 @@ import java.util.List;
 public class ChefServiceImpl implements ChefService {
 
     private final ChefRepository chefRepository;
-    private final DishRepository dishRepository;
+    private final DishService dishService;
 
-    public ChefServiceImpl(ChefRepository chefRepository, DishRepository dishRepository) {
+    public ChefServiceImpl(ChefRepository chefRepository, DishService dishService) {
         this.chefRepository = chefRepository;
-        this.dishRepository = dishRepository;
+        this.dishService = dishService;
     }
 
     @Override
@@ -32,10 +32,9 @@ public class ChefServiceImpl implements ChefService {
     @Override
     public Chef addDishToChef(Long chefId, Long dishId) {
         Chef chef = findById(chefId);
-        Dish dish = dishRepository.findById(dishId).orElseThrow();
-
+        Dish dish = dishService.findById(dishId);
         chef.addDish(dish);
-
+        dishService.update(dish);
         return chefRepository.save(chef);
     }
 }

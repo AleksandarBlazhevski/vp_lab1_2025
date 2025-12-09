@@ -1,15 +1,20 @@
 package mk.ukim.finki.wp.lab.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@Entity
 public class Chef {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String firstName;
     String lastName;
     String bio;
+    @OneToMany(mappedBy = "chef")
     List<Dish> dishes;
 
     public Chef(Long id, String firstName, String lastName, String bio, List<Dish> dishes) {
@@ -18,6 +23,12 @@ public class Chef {
         this.lastName = lastName;
         this.bio = bio;
         this.dishes = dishes;
+    }
+
+    public Chef(String firstName, String lastName, String bio) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bio = bio;
     }
 
     public Chef() {

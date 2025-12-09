@@ -1,20 +1,32 @@
 package mk.ukim.finki.wp.lab.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
+@Entity
 public class Dish {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     String name;
     String cuisine;
     int preparationTime;
+    @ManyToOne
+    Chef chef;
 
     public Dish(Long id, String name, String cuisine, int preparationTime) {
         this.id = id;
         this.name = name;
         this.cuisine = cuisine;
         this.preparationTime = preparationTime;
+    }
+
+    public Dish(String name, String cuisine, int preparationTime, Chef chef) {
+        this.name = name;
+        this.cuisine = cuisine;
+        this.preparationTime = preparationTime;
+        this.chef = chef;
     }
 
     public Dish(String name, String cuisine, int preparationTime){
