@@ -16,11 +16,6 @@ public class InMemoryDishRepository implements DishRepository {
     }
 
     @Override
-    public Dish findByDishId(String dishId) {
-        return DataHolder.dishes.stream().filter(item -> item.getDishId().equals(dishId)).findFirst().orElse(new Dish());
-    }
-
-    @Override
     public Optional<Dish> findById(Long id) {
         return DataHolder.dishes.stream().filter(item -> item.getId() == id).findFirst();
     }

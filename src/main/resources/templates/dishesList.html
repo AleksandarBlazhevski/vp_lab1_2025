@@ -47,7 +47,7 @@
             <input type="text" hidden="hidden" name="chefId" th:value="${chef.getId()}">
         </label>
         <label th:each="dish : ${dishes}">
-            <input type="radio" name="dishId" th:value="${dish.getDishId()}" th:text="${dish.getName()}" required>
+            <input type="radio" name="dishId" th:value="${dish.getId()}" th:text="${dish.getName()}" required>
             <br/>
         </label>
         <br/>

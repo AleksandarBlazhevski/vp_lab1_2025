@@ -6,14 +6,18 @@ import lombok.Data;
 public class Dish {
 
     private Long id;
-    String dishId;
     String name;
     String cuisine;
     int preparationTime;
 
-    public Dish(Long id, String dishId, String name, String cuisine, int preparationTime) {
+    public Dish(Long id, String name, String cuisine, int preparationTime) {
         this.id = id;
-        this.dishId = dishId;
+        this.name = name;
+        this.cuisine = cuisine;
+        this.preparationTime = preparationTime;
+    }
+
+    public Dish(String name, String cuisine, int preparationTime){
         this.name = name;
         this.cuisine = cuisine;
         this.preparationTime = preparationTime;
@@ -22,7 +26,7 @@ public class Dish {
     public Dish(){}
 
     public String getFormatedDish(){
-        return String.format("%s, %s, %s, %d", dishId, name, cuisine, preparationTime);
+        return String.format("%d, %s, %s, %d", id, name, cuisine, preparationTime);
     }
 
     public String toString(){

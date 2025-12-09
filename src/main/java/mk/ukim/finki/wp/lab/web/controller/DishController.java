@@ -27,10 +27,10 @@ public class DishController {
     }
 
     @PostMapping(path = "/dishes/add")
-    public String saveDish(@RequestParam String dishId, @RequestParam String name, @RequestParam String cuisine, @RequestParam int preparationTime){
+    public String saveDish(@RequestParam String name, @RequestParam String cuisine, @RequestParam int preparationTime){
         String error = "";
         try{
-            dishService.create(dishId, name, cuisine, preparationTime);
+            dishService.create( name, cuisine, preparationTime);
         }catch (Exception e){
             error = e.getMessage();
         }
@@ -38,10 +38,10 @@ public class DishController {
     }
 
     @PostMapping(path = "/dishes/edit/{id}")
-    public String editDish(@PathVariable Long id, @RequestParam String dishId, @RequestParam String name, @RequestParam String cuisine, @RequestParam int preparationTime){
+    public String editDish(@PathVariable Long id, @RequestParam String name, @RequestParam String cuisine, @RequestParam int preparationTime){
         String error = "";
         try {
-            dishService.update(id, dishId, name, cuisine, preparationTime);
+            dishService.update(id, name, cuisine, preparationTime);
         }catch (Exception e){
             error = e.getMessage();
         }

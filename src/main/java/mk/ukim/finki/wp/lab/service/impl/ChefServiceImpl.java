@@ -30,9 +30,9 @@ public class ChefServiceImpl implements ChefService {
     }
 
     @Override
-    public Chef addDishToChef(Long chefId, String dishId) {
+    public Chef addDishToChef(Long chefId, Long dishId) {
         Chef chef = findById(chefId);
-        Dish dish = dishRepository.findByDishId(dishId);
+        Dish dish = dishRepository.findById(dishId).orElseThrow();
 
         chef.addDish(dish);
 

@@ -18,11 +18,11 @@ public class DataHolder {
     @PostConstruct
     void init(){
         List<Dish> allDishes = new ArrayList<>();
-        allDishes.add(new Dish(++dishLastId, "1", "Cake", "Mediterranean", 180));
-        allDishes.add(new Dish(++dishLastId, "2", "Pizza", "Italian Cuisine", 30));
-        allDishes.add(new Dish(++dishLastId, "3", "Sushi", "Japanese", 60));
-        allDishes.add(new Dish(++dishLastId, "4", "Noodles", "Thai", 100));
-        allDishes.add(new Dish(++dishLastId, "5", "Gyro", "Greek", 15));
+        allDishes.add(new Dish(++dishLastId, "Cake", "Mediterranean", 180));
+        allDishes.add(new Dish(++dishLastId, "Pizza", "Italian Cuisine", 30));
+        allDishes.add(new Dish(++dishLastId, "Sushi", "Japanese", 60));
+        allDishes.add(new Dish(++dishLastId, "Noodles", "Thai", 100));
+        allDishes.add(new Dish(++dishLastId, "Gyro", "Greek", 15));
         dishes.addAll(allDishes);
 
         List<Dish> chef2Dishes = new ArrayList<>();

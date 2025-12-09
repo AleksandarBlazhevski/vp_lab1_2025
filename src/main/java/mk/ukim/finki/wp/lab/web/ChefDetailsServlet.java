@@ -48,9 +48,9 @@ public class ChefDetailsServlet extends HttpServlet {
             String dishId = req.getParameter("dishId");
 
             Chef chef = chefService.findById(Long.parseLong(chefId));
-            Dish dish = dishService.findByDishId(dishId);
+            Dish dish = dishService.findById(Long.parseLong(dishId));
 
-            Chef updatedChef = chefService.addDishToChef(Long.parseLong(chefId), dishId);
+            Chef updatedChef = chefService.addDishToChef(Long.parseLong(chefId), Long.parseLong(dishId));
 
             List<Dish> dishes = updatedChef.getDishes();
 

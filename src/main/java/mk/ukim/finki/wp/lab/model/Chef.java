@@ -24,7 +24,7 @@ public class Chef {
     }
 
     public void addDish(Dish dish) {
-        dishes.removeIf(item -> item.getDishId().equals(dish.getDishId()));
+        dishes.removeIf(item -> item.getId() == dish.getId());
         dishes.add(dish);
     }
 
