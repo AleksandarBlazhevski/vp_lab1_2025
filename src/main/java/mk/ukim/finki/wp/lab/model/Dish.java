@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import mk.ukim.finki.wp.lab.model.enumerations.Cuisine;
 
+import java.util.Objects;
+
 @Data
 @Entity
 public class Dish {
@@ -45,5 +47,17 @@ public class Dish {
 
     public String toString(){
         return String.format("%s (%s, %d)", name,  cuisine, preparationTime);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Dish dish = (Dish) o;
+        return Objects.equals(id, dish.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

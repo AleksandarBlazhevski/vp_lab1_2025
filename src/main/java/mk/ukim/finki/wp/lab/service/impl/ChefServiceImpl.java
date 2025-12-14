@@ -36,6 +36,7 @@ public class ChefServiceImpl implements ChefService {
         Chef chef = findById(chefId);
         Dish dish = dishService.findById(dishId);
         chef.addDish(dish);
+        dish.setChef(chef);
         dishService.update(dish);
         return chefRepository.save(chef);
     }

@@ -15,7 +15,7 @@ import org.thymeleaf.web.IWebExchange;
 import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 @WebServlet(name = "ChefDetailsServlet", urlPatterns = "/chefDetails")
 public class ChefDetailsServlet extends HttpServlet {
@@ -52,7 +52,7 @@ public class ChefDetailsServlet extends HttpServlet {
 
             Chef updatedChef = chefService.addDishToChef(Long.parseLong(chefId), Long.parseLong(dishId));
 
-            List<Dish> dishes = updatedChef.getDishes();
+            Set<Dish> dishes = updatedChef.getDishes();
 
             context.setVariable("chef", chef);
             context.setVariable("dishes", dishes);
