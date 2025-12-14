@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.lab.web.controller;
 
 import mk.ukim.finki.wp.lab.model.Chef;
 import mk.ukim.finki.wp.lab.model.Dish;
+import mk.ukim.finki.wp.lab.model.enumerations.Cuisine;
 import mk.ukim.finki.wp.lab.service.ChefService;
 import mk.ukim.finki.wp.lab.service.DishService;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class DishController {
     }
 
     @PostMapping(path = "/dishes/add")
-    public String saveDish(@RequestParam String name, @RequestParam String cuisine, @RequestParam int preparationTime, @RequestParam Long chefId){
+    public String saveDish(@RequestParam String name, @RequestParam Cuisine cuisine, @RequestParam int preparationTime, @RequestParam Long chefId){
         String error = "";
         try{
             dishService.create( name, cuisine, preparationTime, chefId);
@@ -42,7 +43,7 @@ public class DishController {
     }
 
     @PostMapping(path = "/dishes/edit/{id}")
-    public String editDish(@PathVariable Long id, @RequestParam String name, @RequestParam String cuisine, @RequestParam int preparationTime, @RequestParam Long chefId){
+    public String editDish(@PathVariable Long id, @RequestParam String name, @RequestParam Cuisine cuisine, @RequestParam int preparationTime, @RequestParam Long chefId){
         String error = "";
         try {
             dishService.update(id, name, cuisine, preparationTime, chefId);
@@ -66,6 +67,7 @@ public class DishController {
             model.addAttribute("dish", dish);
             model.addAttribute("url", "/dishes/edit/" + id);
             model.addAttribute("chefs", chefs);
+            model.addAttribute("cuisines", Cuisine.values());
             return "dish-form";
         }catch (Exception e){
             return "redirect:/dishes?error=DishNotFound";
@@ -78,6 +80,7 @@ public class DishController {
         List<Chef> chefs = chefService.listChefs();
         model.addAttribute("url", "/dishes/add");
         model.addAttribute("chefs", chefs);
+        model.addAttribute("cuisines", Cuisine.values());
         return "dish-form";
     }
 }
